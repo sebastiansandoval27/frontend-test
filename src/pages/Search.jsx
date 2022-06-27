@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { ProductsContext } from "../context/productsContext";
 
 const Search = (props) => {
   const search = props.location.search;
   const queryParam = new URLSearchParams(search);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useContext(ProductsContext);
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getData = () => {
@@ -14,7 +16,7 @@ const Search = (props) => {
       axios
         .get(`http://localhost:8080/api/items?q=${q}`)
         .then((res) => {
-          setProducts(res.data);
+          setResults(res.data);
           setLoading(false);
         })
         .catch((err) => {
@@ -26,23 +28,25 @@ const Search = (props) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [products]);
 
   return (
     <>
       {loading ? (
         <div>Cargando...</div>
       ) : (
-        <div>
-          <ul>
-            {Array.isArray(products.items) &&
-              products.items.map((product) => (
-                <li key={product.id}>
-                  <h4>{product.title}</h4>
-                </li>
-              ))}
-          </ul>
-        </div>
+        <section className="search-results">
+          <div className="container">
+            <ul>
+              {Array.isArray(results.items) &&
+                results.items.map((product) => (
+                  <li key={product.id}>
+                    <h4>{product.title}</h4>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </section>
       )}
     </>
   );

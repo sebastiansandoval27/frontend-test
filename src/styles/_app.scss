@@ -1,0 +1,10 @@
+// General app styles
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: $headerHeight + 20px + $small;
+}

@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchBarIcon from "../assets/ic_Search@2x.png";
 import { useHistory } from "react-router-dom";
+import { ProductsContext } from "../context/productsContext";
 
 const SearchBar = () => {
-  const [value, setValue] = useState("");
+  const [products, setProducts] = useContext(ProductsContext);
+  const [value, setValue] = useState(products.query || "");
+
   let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("ENTER");
+    setProducts({
+      ...products,
+      query: value,
+    });
     history.push(`/items?search=${value}`);
   };
 
@@ -18,7 +24,7 @@ const SearchBar = () => {
 
   const onKeyDown = (e) => {
     if (e.keyCode === 13) {
-      //searchData();
+      handleSubmit(e);
     }
   };
 
