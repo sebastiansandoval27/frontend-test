@@ -1,7 +1,6 @@
 // Header Styles
 
-
-header.header{
+header.header {
   width: 100%;
   height: $headerHeight;
   background-color: $yellow;
@@ -14,13 +13,16 @@ header.header{
   align-items: center;
   padding: 5px 20px;
 
-  & > .content{
+  & > .content {
     width: 50%;
     height: $headerHeight - 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: $borderRadius;
+
+    & > img {
+      cursor: pointer;
+    }
   }
-  
 }

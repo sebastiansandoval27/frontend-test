@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBarIcon from "../assets/ic_Search@2x.png";
 import { useHistory } from "react-router-dom";
+import { validText } from "../utils/valid";
 
 const SearchBar = () => {
   const [value, setValue] = useState("");
+  const search = window.location.search;
+  const queryParam = new URLSearchParams(search);
 
   let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`/items?search=${value}`);
+    let isValid = validText(value);
+    if (isValid) {
+      history.push(`/items?search=${value}`);
+    }
   };
 
   const handleChange = (event) => {
@@ -21,6 +27,11 @@ const SearchBar = () => {
       handleSubmit(e);
     }
   };
+
+  useEffect(() => {
+    let currentValue = queryParam.get("search");
+    if (currentValue) setValue(currentValue);
+  }, [search]);
 
   return (
     <div className="search-bar">

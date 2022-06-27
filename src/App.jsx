@@ -1,8 +1,10 @@
 import Header from "./components/Header";
 import "./styles/config.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import List from "./pages/List";
+import Home from "./pages/Home";
 import Search from "./pages/Search";
+import ProductDetail from "./pages/ProductDetail";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -11,10 +13,10 @@ function App() {
         <Header />
         <main>
           <Switch>
-            <Route path="/items/:id" exact component={List} />
+            <Route path="/" exact component={Home} />
+            <Route path="/items/:id" exact component={ProductDetail} />
             <Route path="/items" exact component={Search} />
-            <Route path="/not-found" />
-            <Route path="/" component={List} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </main>
       </Router>

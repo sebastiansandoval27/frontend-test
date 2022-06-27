@@ -1,0 +1,109 @@
+// Product Detail Page
+
+.breadcrumb {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: $small;
+  margin-top: $small;
+  width: 60%;
+}
+
+.product-detail {
+  width: 60%;
+  height: auto;
+  display: grid;
+  grid-template-areas:
+    "photo name"
+    "desc desc";
+  grid-template-columns: 680px auto;
+  align-items: flex-start;
+  background-color: $white;
+  padding: 20px 10px;
+  border-radius: $borderRadius;
+  margin-bottom: 50px;
+
+  & > .photo {
+    width: 100%;
+    height: auto;
+    grid-area: photo;
+
+    & > img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  & > .name {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    grid-area: name;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: $medium;
+
+    & > span:first-of-type {
+      font-size: $productDetailExtra;
+    }
+    & > h3 {
+      font-size: $productDetailTitle;
+      margin-top: $small;
+      font-weight: bold;
+    }
+    & > h2 {
+      font-size: $productDetailPrice;
+      margin-top: $medium;
+      margin-bottom: $medium;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      &:after {
+        content: "00";
+        font-size: 30px;
+      }
+    }
+    & > button {
+      width: calc(100% - $medium);
+      height: 50px;
+      background-color: $blue;
+      color: $white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: $borderRadius;
+      outline: none;
+      font-size: $productDetailTitle;
+    }
+  }
+  & > .desc {
+    width: 55%;
+    height: auto;
+    grid-area: desc;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: $medium;
+    overflow: hidden;
+    margin-top: 15px;
+
+    & > h3 {
+      font-size: $productDetailDescTitle;
+      font-weight: 600;
+    }
+    & > p {
+      font-size: $productDetailDesc;
+      margin-top: $medium;
+      margin-bottom: $medium;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+}

@@ -1,14 +1,20 @@
 import React from "react";
 import NumberFormat from "react-number-format";
-
+import { useHistory } from "react-router-dom";
 import Shipping from "../assets/ic_shipping@2x.png";
 
-const ProductItem = ({ price, name, city, photo, shipping }) => {
+const ProductItem = ({ id, price, name, city, photo, shipping }) => {
+  const history = useHistory();
+
+  const goToProductDetail = () => {
+    history.push(`/items/${id}`);
+  };
+
   return (
     <>
       <div className="product-item">
         <div className="photo">
-          <img src={photo} alt="Product" />
+          <img src={photo} alt="Product" onClick={goToProductDetail} />
         </div>
         <div className="content">
           <h3>

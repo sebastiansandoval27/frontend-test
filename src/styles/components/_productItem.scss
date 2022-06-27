@@ -14,6 +14,8 @@ div.product-item {
     width: 180px;
     height: 180px;
     border-radius: $borderRadius;
+    overflow: hidden;
+    cursor: pointer;
     & > img {
       border-radius: $borderRadius;
       width: 100%;

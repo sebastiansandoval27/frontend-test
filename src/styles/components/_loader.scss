@@ -1,0 +1,37 @@
+// Full Loader styles
+
+.loader {
+  width: 100%;
+  height: calc(100% - $headerHeight);
+  background-color: $yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: $headerHeight + 5px;
+  left: 0;
+  font-size: 35px;
+  z-index: 9999;
+  color: white;
+
+  & > img {
+    margin-top: 10px;
+    animation: zoomLogo 0.7s linear infinite;
+  }
+}
+
+@keyframes zoomLogo {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
