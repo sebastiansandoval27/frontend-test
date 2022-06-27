@@ -12,10 +12,10 @@ header.header{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 5px 20px;
 
   & > .content{
-    width: 60%;
+    width: 50%;
     height: $headerHeight - 10px;
     display: flex;
     justify-content: space-between;

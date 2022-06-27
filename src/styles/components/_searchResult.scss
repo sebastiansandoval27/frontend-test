@@ -8,11 +8,18 @@ section.search-results {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  & > div.container{
-    width: 60%;
-    padding: 15px;
-    height: 500px;
-    background-color: $blue;
+  
+  & > .container{
+    width: 50%;
+    margin-top: $small;
+    height: auto;
+    overflow: hidden;
+    background-color: transparent;
+    
+    & > .items{
+      border-radius: $borderRadius;
+      margin-top: $small;
+      background-color: $white;
+    }
   }
 }

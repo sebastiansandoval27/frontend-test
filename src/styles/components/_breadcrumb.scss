@@ -1,0 +1,21 @@
+.breadcrum-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+  width: 100%;
+  background-color: transparent;
+  margin-right: $small;
+  border-radius: $borderRadius;
+  color: $black;
+  font-size: $breadcrumb;
+
+  .breadcrumb-item {
+    &:after {
+      content: "  > ";
+    }
+    &:last-child:after {
+      content: "";
+    }
+  }
+}

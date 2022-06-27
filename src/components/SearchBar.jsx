@@ -1,20 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchBarIcon from "../assets/ic_Search@2x.png";
 import { useHistory } from "react-router-dom";
-import { ProductsContext } from "../context/productsContext";
 
 const SearchBar = () => {
-  const [products, setProducts] = useContext(ProductsContext);
-  const [value, setValue] = useState(products.query || "");
+  const [value, setValue] = useState("");
 
   let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setProducts({
-      ...products,
-      query: value,
-    });
     history.push(`/items?search=${value}`);
   };
 

@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { ProductsContext } from "../context/productsContext";
+import ProductItem from "../components/ProductItem";
+import BreadCrumbs from "../components/BreadCrumbs";
 
 const Search = (props) => {
   const search = props.location.search;
   const queryParam = new URLSearchParams(search);
-  const [products, setProducts] = useContext(ProductsContext);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -28,7 +28,7 @@ const Search = (props) => {
 
   useEffect(() => {
     getData();
-  }, [products]);
+  }, [search]);
 
   return (
     <>
@@ -37,14 +37,33 @@ const Search = (props) => {
       ) : (
         <section className="search-results">
           <div className="container">
-            <ul>
+            {results?.items && (
+              <BreadCrumbs
+                categories={[
+                  {
+                    id: 1,
+                    name: results.items[0].domain_id,
+                  },
+                  {
+                    id: 2,
+                    name: results.items[0].domain_id,
+                  },
+                ]}
+              />
+            )}
+            <div className="items">
               {Array.isArray(results.items) &&
                 results.items.map((product) => (
-                  <li key={product.id}>
-                    <h4>{product.title}</h4>
-                  </li>
+                  <ProductItem
+                    key={product.id}
+                    name={product.title}
+                    price={product.price}
+                    city={product.address.city_name}
+                    photo={product.thumbnail}
+                    shipping={product.shipping}
+                  />
                 ))}
-            </ul>
+            </div>
           </div>
         </section>
       )}
